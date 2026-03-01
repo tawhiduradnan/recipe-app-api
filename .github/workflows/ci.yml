@@ -42,4 +42,8 @@ jobs:
         run: ls -R
 
       - name: Run tests
+<<<<<<< HEAD
         run: python app/manage.py test
+=======
+        run: python app/manage.py test
+>>>>>>> c864eea6ca3dc6ee50728ffe7972423b9fc27e8b
