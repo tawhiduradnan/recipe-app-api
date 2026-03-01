@@ -37,10 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
-    'core',
-=======
->>>>>>> c864eea6ca3dc6ee50728ffe7972423b9fc27e8b
+    'core'
 ]
 
 MIDDLEWARE = [
@@ -119,10 +116,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-<<<<<<< HEAD
 
-
-
-AUTH_USER_MODEL='core.User'
-=======
->>>>>>> c864eea6ca3dc6ee50728ffe7972423b9fc27e8b
+AUTH_USER_MODEL = 'core.User'
