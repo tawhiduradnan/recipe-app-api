@@ -4,16 +4,30 @@ LABEL maintainer="Tawhidur Rahman Adnan"
 
 ENV PYTHONUNBUFFERED=1
 
-# Install system dependencies (if needed)
-RUN apk add --no-cache gcc musl-dev libffi-dev
+# Install system dependencies
+RUN apk add --no-cache \
+    gcc \
+    musl-dev \
+    libffi-dev \
+    postgresql-client
 
-# Copy requirements first (better layer caching)
+# Install build dependencies (temporary)
+RUN apk add --no-cache --virtual .tmp-build-deps \
+    gcc \
+    libc-dev \
+    linux-headers \
+    postgresql-dev
+
+# Copy requirements first (better caching)
 COPY requirements.txt /tmp/requirements.txt
 
 # Install Python dependencies
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r /tmp/requirements.txt && \
     rm -rf /root/.cache
+
+# Remove build dependencies after install (reduces image size)
+RUN apk del .tmp-build-deps
 
 # Create app directory
 RUN mkdir /app
